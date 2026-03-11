@@ -1,0 +1,7 @@
+# Wireframe images (not needed on site)
+IMG_*.jpg
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

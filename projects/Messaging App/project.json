@@ -1,0 +1,22 @@
+{
+  "name": "Messaging App",
+  "description": "A messaging app website made for desktop and mobile.",
+  "longDescription": "A messaging app website made for desktop and mobile. It's a simple app that allows you to send and receive messages. It was made as a personal project to learn more about web development. The service runs of a free tier of Render and was bult into an android app later.",
+  "tags": ["React", "JavaScript", "HTML/CSS", "Web Dev"],
+  "date": "2026-03",
+  "featured": false,
+  "links": {
+    "live": "https://messaging-app-2lzh.onrender.com/",
+    "github": "",
+    "download": ""
+  },
+  "thumbnail": "screenshots/image 1.png",
+  "screenshots": [
+    "screenshots/image 2.png",
+    "screenshots/image 3.png",
+    "screenshots/image 4.png"
+  ],
+  "videos": [
+    "Messaging App Preview.mp4"
+  ]
+}

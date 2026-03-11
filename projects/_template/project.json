@@ -1,0 +1,21 @@
+{
+  "name": "Project Name",
+  "description": "A short one-liner about what this project is.",
+  "longDescription": "A longer paragraph explaining the project in detail — what it does, why you built it, what makes it interesting.",
+  "tags": ["Python", "Game Dev"],
+  "date": "2026-01",
+  "featured": false,
+  "links": {
+    "live": "",
+    "github": "",
+    "download": ""
+  },
+  "thumbnail": "screenshots/thumbnail.png",
+  "screenshots": [
+    "screenshots/screenshot1.png",
+    "screenshots/screenshot2.png"
+  ],
+  "videos": [
+    "videos/demo.mp4"
+  ]
+}
