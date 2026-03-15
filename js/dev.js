@@ -156,7 +156,9 @@ const contactConfig = ${JSON.stringify(contactConfig, null, 2)};
         const url = prompt('Avatar image URL or path (blank to remove):', aboutConfig.avatarImage);
         if (url != null) {
           aboutConfig.avatarImage = url.trim();
-          avatar.style.backgroundImage = url.trim() ? `url('${url.trim()}')` : '';
+          const img = avatar.querySelector('img');
+          if (img) { img.src = url.trim() || ''; }
+          else if (url.trim()) { const i = document.createElement('img'); i.src = url.trim(); i.alt = 'Avatar'; avatar.appendChild(i); }
           devSave();
         }
       });
@@ -188,7 +190,9 @@ const contactConfig = ${JSON.stringify(contactConfig, null, 2)};
         const url = prompt('Avatar image URL or path (blank to remove):', contactConfig.avatarImage);
         if (url != null) {
           contactConfig.avatarImage = url.trim();
-          avatar.style.backgroundImage = url.trim() ? `url('${url.trim()}')` : '';
+          const img = avatar.querySelector('img');
+          if (img) { img.src = url.trim() || ''; }
+          else if (url.trim()) { const i = document.createElement('img'); i.src = url.trim(); i.alt = 'Avatar'; avatar.appendChild(i); }
           devSave();
         }
       });
@@ -232,8 +236,26 @@ const contactConfig = ${JSON.stringify(contactConfig, null, 2)};
       badge.style.pointerEvents = 'all';
       badge.addEventListener('click', devExport);
       document.body.appendChild(badge);
+
+      const clearBtn = document.createElement('div');
+      clearBtn.id = 'dev-clear';
+      clearBtn.className = 'dev-badge';
+      clearBtn.textContent = '🗑 Clear Local Storage';
+      clearBtn.style.cssText = 'cursor:pointer;pointer-events:all;right:auto;left:16px;';
+      clearBtn.addEventListener('click', () => {
+        localStorage.removeItem('portfolio_projects');
+        localStorage.removeItem('portfolio_bannerConfig');
+        localStorage.removeItem('portfolio_aboutConfig');
+        localStorage.removeItem('portfolio_contactConfig');
+        clearBtn.textContent = '✓ Cleared!';
+        setTimeout(() => { clearBtn.textContent = '🗑 Clear Local Storage'; }, 1200);
+        location.reload();
+      });
+      document.body.appendChild(clearBtn);
     } else if (!active && badge) {
       badge.remove();
+      const cb = document.getElementById('dev-clear');
+      if (cb) cb.remove();
     }
     renderProjects(); renderHome(); renderAbout(); renderContact();
     if (active) { devEnhanceBanner(); devEnhanceAbout(); devEnhanceContact(); }
