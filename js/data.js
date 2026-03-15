@@ -69,3 +69,13 @@ const bannerConfig = {
   title: 'William Culver',
   subtitle: "Developer & Maker — games, tools, and experiments."
 };
+
+// Restore any dev mode edits saved in localStorage
+(function restoreDevEdits() {
+  try {
+    const savedProjects = localStorage.getItem('portfolio_projects');
+    if (savedProjects) projects.splice(0, projects.length, ...JSON.parse(savedProjects));
+    const savedBanner = localStorage.getItem('portfolio_bannerConfig');
+    if (savedBanner) Object.assign(bannerConfig, JSON.parse(savedBanner));
+  } catch(e) {}
+})();
