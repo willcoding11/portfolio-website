@@ -125,7 +125,7 @@
   .home-banner {
     position: relative;
     width: 100%;
-    height: 190px;
+    height: 260px;
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--border);
@@ -169,9 +169,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
+    overflow: visible;
   }
 
-  /* pop-out hover: card lifts and tilts, revealing the slot it left */
+  /* pop-out hover: card lifts and tilts from center, revealing the slot it left */
   .home-proj-wrap {
     position: relative;
     border-radius: var(--radius);
@@ -187,16 +188,17 @@
     opacity: 0;
     transition: opacity 0.2s ease;
   }
+  .home-proj-wrap:hover { z-index: 10; }
   .home-proj-wrap:hover::after { opacity: 1; }
   .home-proj-wrap .project-card {
     position: relative;
     z-index: 1;
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
-    transform-origin: bottom left;
+    transform-origin: center center;
   }
   .home-proj-wrap:hover .project-card {
-    transform: rotate(3deg) scale(1.05) translateY(-8px) translateX(6px) !important;
-    box-shadow: -8px 12px 32px rgba(0,0,0,0.16) !important;
+    transform: rotate(4deg) translateY(-10px) !important;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.16) !important;
   }
 
   /* ════════════════════════════════════
@@ -459,6 +461,12 @@
     overflow: hidden;
     border: 1px solid var(--border);
     background: linear-gradient(155deg, #dde4ed, #eae6e1 50%, #e8e0d4);
+    background-size: cover;
+    background-position: center;
+  }
+  .about-avatar {
+    background-size: cover;
+    background-position: center;
   }
 
   .about-bio {
@@ -621,6 +629,34 @@
     transition: background 0.2s; font-family: 'Manrope', sans-serif;
   }
   .dev-add-screenshot:hover { background: rgba(232,93,42,0.08); }
+  .dev-tag-remove {
+    background: none; border: none; cursor: pointer;
+    color: #e85d2a; font-size: 0.8rem; padding: 0 0 0 5px;
+    line-height: 1; vertical-align: middle; font-weight: 700;
+  }
+  .dev-add-tag {
+    display: inline-flex; align-items: center;
+    font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #e85d2a; border: 1.5px dashed #e85d2a;
+    padding: 3px 10px; border-radius: 100px; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dev-add-tag:hover { background: rgba(232,93,42,0.08); }
+  .dev-edit-link {
+    background: rgba(232,93,42,0.12); border: 1px solid #e85d2a;
+    border-radius: 6px; cursor: pointer; color: #e85d2a;
+    font-size: 0.75rem; font-weight: 700; padding: 2px 7px;
+    margin-left: 8px; transition: background 0.2s;
+  }
+  .dev-edit-link:hover { background: rgba(232,93,42,0.22); }
+  .dev-img-hint {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(232,93,42,0.08); border: 2px dashed #e85d2a;
+    color: #e85d2a; font-size: 0.75rem; font-weight: 700;
+    font-family: 'Manrope', sans-serif; cursor: pointer; opacity: 0;
+    transition: opacity 0.2s; border-radius: inherit; z-index: 2;
+  }
+  .dev-img-hint:hover { opacity: 1; }
   /* ╚══════════════════════════════════════════════════════╝ */
 
   /* ── scrollbar ── */
@@ -633,7 +669,7 @@
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
     .page { padding: 32px 20px 48px; }
-    .home-banner { height: 150px; }
+    .home-banner { height: 200px; }
     .banner-title { font-size: 1.8rem; }
     .home-proj-grid { grid-template-columns: repeat(2, 1fr); }
     .projects-grid { grid-template-columns: repeat(2, 1fr); }
@@ -644,7 +680,7 @@
   @media (max-width: 600px) {
     .nav-links { gap: 2px; }
     .nav-link { padding: 6px 12px; font-size: 0.72rem; }
-    .home-banner { height: 130px; }
+    .home-banner { height: 160px; }
     .banner-title { font-size: 1.4rem; }
     .home-proj-grid { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
@@ -1059,6 +1095,7 @@
       if (clicks >= 5) { clicks = 0; active = !active; onToggle(); }
     });
 
+    // ── Banner ──
     function devEnhanceBanner() {
       const titleEl = document.querySelector('.banner-title');
       const subEl   = document.querySelector('.banner-subtitle');
@@ -1070,6 +1107,66 @@
         subEl.contentEditable = 'true';
         subEl.addEventListener('blur', () => { bannerConfig.subtitle = subEl.textContent.trim(); });
       }
+    }
+
+    // ── About page ──
+    function devEnhanceAbout() {
+      // editable text
+      document.querySelectorAll('.about-text h2, .about-text p').forEach(el => {
+        el.contentEditable = 'true';
+      });
+      // click hero to change image
+      const hero = document.querySelector('.about-hero');
+      if (hero && !hero.dataset.devBound) {
+        hero.dataset.devBound = '1';
+        hero.style.position = 'relative';
+        const hint = document.createElement('div');
+        hint.className = 'dev-img-hint';
+        hint.textContent = '🖼 Click to change image';
+        hero.appendChild(hint);
+        hero.addEventListener('click', () => {
+          const cur = hero.style.backgroundImage.replace(/url\(["']?|["']?\)/g, '');
+          const url = prompt('Hero image URL or path (blank to remove):', cur);
+          if (url != null) hero.style.backgroundImage = url.trim() ? `url('${url.trim()}')` : '';
+        });
+      }
+      // click avatar to change image
+      const avatar = document.querySelector('.about-avatar');
+      if (avatar && !avatar.dataset.devBound) {
+        avatar.dataset.devBound = '1';
+        const hint = document.createElement('div');
+        hint.className = 'dev-img-hint';
+        hint.textContent = '🖼';
+        avatar.appendChild(hint);
+        avatar.addEventListener('click', () => {
+          const cur = avatar.style.backgroundImage.replace(/url\(["']?|["']?\)/g, '');
+          const url = prompt('Avatar image URL or path (blank to remove):', cur);
+          if (url != null) avatar.style.backgroundImage = url.trim() ? `url('${url.trim()}')` : '';
+        });
+      }
+    }
+
+    // ── Contact page ──
+    function devEnhanceContact() {
+      const name = document.querySelector('.contact-name');
+      const sub  = document.querySelector('.contact-sub');
+      if (name) name.contentEditable = 'true';
+      if (sub)  sub.contentEditable  = 'true';
+      document.querySelectorAll('.contact-btn').forEach(btn => {
+        if (btn.dataset.devBound) return;
+        btn.dataset.devBound = '1';
+        const span = btn.querySelector('span');
+        if (span) span.contentEditable = 'true';
+        const editBtn = document.createElement('button');
+        editBtn.className = 'dev-edit-link';
+        editBtn.textContent = '✎ URL';
+        editBtn.addEventListener('click', e => {
+          e.preventDefault(); e.stopPropagation();
+          const url = prompt('Button link URL:', btn.getAttribute('href'));
+          if (url != null) btn.setAttribute('href', url);
+        });
+        btn.appendChild(editBtn);
+      });
     }
 
     function onToggle() {
@@ -1085,7 +1182,7 @@
       }
       renderProjects();
       renderHome();
-      if (active) devEnhanceBanner();
+      if (active) { devEnhanceBanner(); devEnhanceAbout(); devEnhanceContact(); }
       const overlay = document.getElementById('modal-overlay');
       if (overlay.classList.contains('open') && currentModalIndex >= 0) {
         openModal(currentModalIndex);
@@ -1112,7 +1209,7 @@
       });
     };
 
-    // wrap openModal — editable long description + add-screenshot button
+    // wrap openModal — editable long description, tags, and add-screenshot button
     const _openModal = openModal;
     openModal = function(index) {
       _openModal(index);
@@ -1127,13 +1224,37 @@
         });
       }
 
+      // editable tags — × to remove, + to add
+      const tagsEl = document.querySelector('.modal-tags');
+      if (tagsEl) {
+        tagsEl.querySelectorAll('span').forEach((tag, ti) => {
+          const rm = document.createElement('button');
+          rm.className = 'dev-tag-remove';
+          rm.textContent = '×';
+          rm.addEventListener('click', e => {
+            e.stopPropagation();
+            projects[index].tags.splice(ti, 1);
+            openModal(index);
+          });
+          tag.appendChild(rm);
+        });
+        const addTag = document.createElement('div');
+        addTag.className = 'dev-add-tag';
+        addTag.textContent = '+ Tag';
+        addTag.addEventListener('click', () => {
+          const t = prompt('New tag name:');
+          if (t && t.trim()) { projects[index].tags.push(t.trim()); openModal(index); }
+        });
+        tagsEl.appendChild(addTag);
+      }
+
       // add screenshot button (creates grid if project has none yet)
       let grid = document.querySelector('.modal-screenshots');
       if (!grid) {
         grid = document.createElement('div');
         grid.className = 'modal-screenshots';
         const links = document.querySelector('.modal-links');
-        const body = document.querySelector('.modal-body');
+        const body  = document.querySelector('.modal-body');
         links ? body.insertBefore(grid, links) : body.appendChild(grid);
       }
       const btn = document.createElement('div');
