@@ -111,6 +111,7 @@ const aboutConfig = {
 const contactConfig = {
   "name": "William Culver",
   "subtitle": "Available for freelance work and collaborations",
+  "email": "will.coding11@gmail.com",
   "avatarImage": "pfp.jpg",
   "buttons": [
     {

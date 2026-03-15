@@ -553,6 +553,37 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   color: var(--text-bright);
   margin-bottom: 6px;
 }
+.contact-email-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  margin-top: 8px;
+}
+.contact-email-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  user-select: all;
+  letter-spacing: 0.01em;
+}
+.contact-copy-btn {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.contact-copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
 .contact-sub {
   font-size: 0.85rem;
   color: var(--text-dim);

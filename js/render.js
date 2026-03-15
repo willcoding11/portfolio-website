@@ -123,10 +123,14 @@ function renderContact() {
       <div class="contact-avatar">${contactConfig.avatarImage ? `<img src="${contactConfig.avatarImage}" alt="Avatar">` : ''}</div>
       <div class="contact-name">${contactConfig.name}</div>
       <div class="contact-sub">${contactConfig.subtitle}</div>
+      <div class="contact-email-row">
+        <span class="contact-email-text">${contactConfig.email}</span>
+        <button class="contact-copy-btn" onclick="navigator.clipboard.writeText('${contactConfig.email}').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy'},1200)})">Copy</button>
+      </div>
       <div class="contact-buttons">
-        ${contactConfig.buttons.map((btn, i) => `
-          <a class="contact-btn" href="${btn.href}"${!btn.isEmail ? ' target="_blank" rel="noopener"' : ''}>
-            ${btn.isEmail ? EMAIL_SVG : LINK_SVG}
+        ${contactConfig.buttons.filter(btn => !btn.isEmail).map((btn, i) => `
+          <a class="contact-btn" href="${btn.href}" target="_blank" rel="noopener">
+            ${LINK_SVG}
             <span>${btn.label}</span>
           </a>`).join('')}
       </div>
