@@ -627,6 +627,37 @@
     color: var(--text-bright);
   }
 
+  /* ╔══════════════════════════════════════════════════════╗
+     ║  DEV MODE STYLES — delete this block to remove       ║
+     ╚══════════════════════════════════════════════════════╝ */
+  .dev-badge {
+    position: fixed; bottom: 16px; right: 16px;
+    background: #e85d2a; color: #fff;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px;
+    z-index: 9998; pointer-events: none;
+    font-family: 'Manrope', sans-serif;
+    box-shadow: 0 2px 12px rgba(232,93,42,0.4);
+  }
+  [contenteditable="true"] {
+    outline: 2px dashed #e85d2a; outline-offset: 2px;
+    border-radius: 3px; cursor: text;
+  }
+  [contenteditable="true"]:focus {
+    outline: 2px solid #e85d2a;
+    background: rgba(232,93,42,0.06);
+  }
+  .dev-add-screenshot {
+    display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 16/10; border: 2px dashed #e85d2a;
+    border-radius: 10px; cursor: pointer;
+    color: #e85d2a; font-size: 0.8rem; font-weight: 600;
+    transition: background 0.2s; font-family: 'Manrope', sans-serif;
+  }
+  .dev-add-screenshot:hover { background: rgba(232,93,42,0.08); }
+  /* ╚══════════════════════════════════════════════════════╝ */
+
   /* ── scrollbar ── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -878,7 +909,10 @@
   // PROJECT DETAIL MODAL
   // ════════════════════════════════════
 
+  let currentModalIndex = -1; // tracked for dev mode re-render
+
   function openModal(index) {
+    currentModalIndex = index;
     const p = projects[index];
     const overlay = document.getElementById('modal-overlay');
     const content = document.getElementById('modal-content');
@@ -978,6 +1012,96 @@
   // ── Init ──
   renderHome();
   renderProjects();
+
+  // ╔═══════════════════════════════════════════════════════════╗
+  // ║  DEV MODE — delete this block (+ CSS above) to remove it  ║
+  // ╚═══════════════════════════════════════════════════════════╝
+  (function devMode() {
+    const ENABLED = true; // ← set false to disable without deleting
+
+    if (!ENABLED) return;
+
+    let clicks = 0, clickTimer = null, active = false;
+
+    // 5 clicks on "William Culver" in the top-left to toggle
+    document.querySelector('.nav-name').addEventListener('click', () => {
+      clicks++;
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => { clicks = 0; }, 2000);
+      if (clicks >= 5) { clicks = 0; active = !active; onToggle(); }
+    });
+
+    function onToggle() {
+      let badge = document.getElementById('dev-badge');
+      if (active && !badge) {
+        badge = document.createElement('div');
+        badge.id = 'dev-badge';
+        badge.className = 'dev-badge';
+        badge.textContent = '⚙ DEV MODE';
+        document.body.appendChild(badge);
+      } else if (!active && badge) {
+        badge.remove();
+      }
+      renderProjects();
+      renderHome();
+      const overlay = document.getElementById('modal-overlay');
+      if (overlay.classList.contains('open') && currentModalIndex >= 0) {
+        openModal(currentModalIndex);
+      }
+    }
+
+    // wrap renderProjects — editable short descriptions on project cards
+    const _renderProjects = renderProjects;
+    renderProjects = function() {
+      _renderProjects();
+      if (!active) return;
+      document.querySelectorAll('.project-card').forEach((card, i) => {
+        const p = card.querySelector('.project-card-body p');
+        if (!p) return;
+        p.contentEditable = 'true';
+        p.addEventListener('blur', () => { projects[i].description = p.textContent.trim(); });
+      });
+    };
+
+    // wrap openModal — editable long description + add-screenshot button
+    const _openModal = openModal;
+    openModal = function(index) {
+      _openModal(index);
+      if (!active) return;
+
+      // editable long description
+      const descEl = document.querySelector('.modal-desc');
+      if (descEl) {
+        descEl.contentEditable = 'true';
+        descEl.addEventListener('blur', () => {
+          projects[index].longDescription = descEl.textContent.trim();
+        });
+      }
+
+      // add screenshot button (creates grid if project has none yet)
+      let grid = document.querySelector('.modal-screenshots');
+      if (!grid) {
+        grid = document.createElement('div');
+        grid.className = 'modal-screenshots';
+        const links = document.querySelector('.modal-links');
+        const body = document.querySelector('.modal-body');
+        links ? body.insertBefore(grid, links) : body.appendChild(grid);
+      }
+      const btn = document.createElement('div');
+      btn.className = 'dev-add-screenshot';
+      btn.textContent = '+ Add Screenshot';
+      btn.addEventListener('click', () => {
+        const url = prompt('Screenshot path or URL:');
+        if (url && url.trim()) {
+          if (!projects[index].screenshots) projects[index].screenshots = [];
+          projects[index].screenshots.push(url.trim());
+          openModal(index);
+        }
+      });
+      grid.appendChild(btn);
+    };
+  })();
+  // ╚═══════════════════════════════════════════════════════════╝
 </script>
 
 </body>
