@@ -95,7 +95,7 @@ const aboutConfig = {
     }
   ],
   "heroImage": "",
-  "avatarImage": "\"C:\\Users\\willi\\Downloads\\unnamed.jpg\"",
+  "avatarImage": "pfp.jpg",
   "skills": [
     "Python",
     "JavaScript",
@@ -111,7 +111,7 @@ const aboutConfig = {
 const contactConfig = {
   "name": "William Culver",
   "subtitle": "Available for freelance work and collaborations",
-  "avatarImage": "\"C:\\Users\\willi\\Downloads\\unnamed.jpg\"",
+  "avatarImage": "pfp.jpg",
   "buttons": [
     {
       "label": "Email",
