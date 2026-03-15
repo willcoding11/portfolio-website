@@ -65,7 +65,7 @@ const projects = [
       "live": "https://messaging-app-2lzh.onrender.com/"
     },
     "folder": "projects/Messaging App",
-    "thumbnail": "projects/Messaging App/screenshots/image 1.png",
+    "thumbnail": "projects/Messaging App/screenshots/simple_messages_logo.png",
     "screenshots": [
       "projects/Messaging App/screenshots/image 2.png",
       "projects/Messaging App/screenshots/image 3.png",
