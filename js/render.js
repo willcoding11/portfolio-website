@@ -99,6 +99,40 @@ function initBannerCanvas() {
   new ResizeObserver(resize).observe(canvas.parentElement);
 }
 
+const EMAIL_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13L2 4"/></svg>`;
+const LINK_SVG  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`;
+
+function renderAbout() {
+  document.getElementById('page-about').innerHTML = `
+    <div class="about-hero"${aboutConfig.heroImage ? ` style="background-image:url('${aboutConfig.heroImage}')"` : ''}></div>
+    <div class="about-bio">
+      <div class="about-avatar"${aboutConfig.avatarImage ? ` style="background-image:url('${aboutConfig.avatarImage}')"` : ''}></div>
+      <div class="about-text">
+        <h2>${aboutConfig.heading}</h2>
+        ${aboutConfig.paragraphs.map(p => `<p${p.dim ? ' class="dim"' : ''}>${p.text}</p>`).join('')}
+        <div class="skills-row">
+          ${aboutConfig.skills.map(s => `<span class="skill-pill">${s}</span>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderContact() {
+  document.getElementById('page-contact').innerHTML = `
+    <div class="contact-wrap">
+      <div class="contact-avatar"${contactConfig.avatarImage ? ` style="background-image:url('${contactConfig.avatarImage}')"` : ''}></div>
+      <div class="contact-name">${contactConfig.name}</div>
+      <div class="contact-sub">${contactConfig.subtitle}</div>
+      <div class="contact-buttons">
+        ${contactConfig.buttons.map((btn, i) => `
+          <a class="contact-btn" href="${btn.href}"${!btn.isEmail ? ' target="_blank" rel="noopener"' : ''}>
+            ${btn.isEmail ? EMAIL_SVG : LINK_SVG}
+            <span>${btn.label}</span>
+          </a>`).join('')}
+      </div>
+    </div>`;
+}
+
 function renderProjects() {
   const el = document.getElementById('page-projects');
   el.innerHTML = `

@@ -70,12 +70,37 @@ const bannerConfig = {
   subtitle: "Developer & Maker — games, tools, and experiments."
 };
 
-// Restore any dev mode edits saved in localStorage
+const aboutConfig = {
+  heading: 'About Me',
+  paragraphs: [
+    { text: "I'm William Culver — a developer and maker who loves building things from the ground up. From games and 3D engines to websites and hardware projects, I enjoy the challenge of turning ideas into something real and interactive.", dim: false },
+    { text: "I work across Python, JavaScript, C#, and C++, and I'm always picking up new tools. When I'm not coding, I'm usually designing 3D prints or experimenting with electronics.", dim: true }
+  ],
+  heroImage: '',
+  avatarImage: '',
+  skills: ['Python', 'JavaScript', 'C#', 'C++', 'Unity', 'HTML/CSS', '3D Printing', 'Game Dev']
+};
+
+const contactConfig = {
+  name: 'William Culver',
+  subtitle: 'Available for freelance work and collaborations',
+  avatarImage: '',
+  buttons: [
+    { label: 'Email', href: 'mailto:your@email.com', isEmail: true },
+    { label: 'Fiverr', href: '#', isEmail: false }
+  ]
+};
+
+// ── Restore any dev mode edits saved in localStorage ──
 (function restoreDevEdits() {
   try {
-    const savedProjects = localStorage.getItem('portfolio_projects');
-    if (savedProjects) projects.splice(0, projects.length, ...JSON.parse(savedProjects));
-    const savedBanner = localStorage.getItem('portfolio_bannerConfig');
-    if (savedBanner) Object.assign(bannerConfig, JSON.parse(savedBanner));
+    const sp = localStorage.getItem('portfolio_projects');
+    if (sp) projects.splice(0, projects.length, ...JSON.parse(sp));
+    const sb = localStorage.getItem('portfolio_bannerConfig');
+    if (sb) Object.assign(bannerConfig, JSON.parse(sb));
+    const sa = localStorage.getItem('portfolio_aboutConfig');
+    if (sa) Object.assign(aboutConfig, JSON.parse(sa));
+    const sc = localStorage.getItem('portfolio_contactConfig');
+    if (sc) Object.assign(contactConfig, JSON.parse(sc));
   } catch(e) {}
 })();

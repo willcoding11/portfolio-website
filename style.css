@@ -447,10 +447,7 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   background: linear-gradient(155deg, #dde4ed, #eae6e1 50%, #e8e0d4);
   background-size: cover;
   background-position: center;
-}
-.about-avatar {
-  background-size: cover;
-  background-position: center;
+  position: relative;
 }
 
 .about-bio {
@@ -467,6 +464,9 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   overflow: hidden;
   border: 2px solid var(--border);
   background: linear-gradient(145deg, #d8d4ce, #ccc7bf);
+  position: relative;
+  background-size: cover;
+  background-position: center;
 }
 .about-text h2 {
   font-family: 'Syne', sans-serif;
@@ -526,6 +526,8 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   margin-bottom: 24px;
   position: relative;
   background: linear-gradient(145deg, #d8d4ce, #ccc7bf);
+  background-size: cover;
+  background-position: center;
 }
 .contact-avatar::after {
   content: '';
