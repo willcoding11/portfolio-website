@@ -11,16 +11,16 @@
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
   :root {
-    --bg: #0b0e11;
-    --bg-raised: #13171c;
-    --bg-card: #181d24;
-    --bg-card-hover: #1e252e;
+    --bg: #f5f3f0;
+    --bg-raised: #eae6e1;
+    --bg-card: #e3ddd6;
+    --bg-card-hover: #d8d0c8;
     --accent: #c47a3a;
-    --accent-glow: #c47a3a44;
-    --text: #d4cfc8;
-    --text-dim: #7a7671;
-    --text-bright: #f0ece6;
-    --border: #252a32;
+    --accent-glow: #c47a3a22;
+    --text: #3d3830;
+    --text-dim: #7a7065;
+    --text-bright: #1a1612;
+    --border: #c5bdb4;
     --radius: 14px;
     --nav-height: 64px;
   }
@@ -59,7 +59,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
-    background: rgba(11, 14, 17, 0.82);
+    background: rgba(245, 243, 240, 0.88);
     backdrop-filter: blur(20px) saturate(1.4);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
     border-bottom: 1px solid var(--border);
@@ -138,7 +138,7 @@
     border: 1px solid var(--border);
     transition: border-color 0.4s;
   }
-  .featured-project:hover { border-color: #333a44; }
+  .featured-project:hover { border-color: #a09890; }
   .featured-project img {
     width: 100%; height: 100%;
     object-fit: cover;
@@ -148,7 +148,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     padding: 32px 28px 24px;
-    background: linear-gradient(to top, rgba(11,14,17,0.92) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(26,22,18,0.82) 0%, transparent 100%);
     z-index: 2;
   }
   .featured-label h2 {
@@ -197,7 +197,7 @@
   }
   .home-card:hover {
     background: var(--bg-card-hover);
-    border-color: #333a44;
+    border-color: #a09890;
     transform: translateX(-4px);
   }
   .home-card .thumb {
@@ -268,9 +268,9 @@
     transform: translateY(20px);
   }
   .project-card:hover {
-    border-color: #333a44;
+    border-color: #a09890;
     transform: translateY(-6px);
-    box-shadow: 0 20px 50px -12px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px -12px rgba(0,0,0,0.12);
   }
   .page.visible .project-card {
     opacity: 1;
@@ -440,7 +440,7 @@
   }
   .modal-screenshots img:hover {
     transform: scale(1.03);
-    border-color: #333a44;
+    border-color: #a09890;
   }
 
   .modal-video {
@@ -493,7 +493,7 @@
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--border);
-    background: linear-gradient(155deg, #1c2636, #13171c 50%, #201a14);
+    background: linear-gradient(155deg, #dde4ed, #eae6e1 50%, #e8e0d4);
   }
 
   .about-bio {
@@ -509,7 +509,7 @@
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid var(--border);
-    background: linear-gradient(145deg, #22201a, #19160f);
+    background: linear-gradient(145deg, #d8d4ce, #ccc7bf);
   }
   .about-text h2 {
     font-family: 'Syne', sans-serif;
@@ -568,7 +568,7 @@
     border: 2px solid var(--border);
     margin-bottom: 24px;
     position: relative;
-    background: linear-gradient(145deg, #22201a, #19160f);
+    background: linear-gradient(145deg, #d8d4ce, #ccc7bf);
   }
   .contact-avatar::after {
     content: '';
@@ -627,11 +627,42 @@
     color: var(--text-bright);
   }
 
+  /* ╔══════════════════════════════════════════════════════╗
+     ║  DEV MODE STYLES — delete this block to remove       ║
+     ╚══════════════════════════════════════════════════════╝ */
+  .dev-badge {
+    position: fixed; bottom: 16px; right: 16px;
+    background: #e85d2a; color: #fff;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px;
+    z-index: 9998; pointer-events: none;
+    font-family: 'Manrope', sans-serif;
+    box-shadow: 0 2px 12px rgba(232,93,42,0.4);
+  }
+  [contenteditable="true"] {
+    outline: 2px dashed #e85d2a; outline-offset: 2px;
+    border-radius: 3px; cursor: text;
+  }
+  [contenteditable="true"]:focus {
+    outline: 2px solid #e85d2a;
+    background: rgba(232,93,42,0.06);
+  }
+  .dev-add-screenshot {
+    display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 16/10; border: 2px dashed #e85d2a;
+    border-radius: 10px; cursor: pointer;
+    color: #e85d2a; font-size: 0.8rem; font-weight: 600;
+    transition: background 0.2s; font-family: 'Manrope', sans-serif;
+  }
+  .dev-add-screenshot:hover { background: rgba(232,93,42,0.08); }
+  /* ╚══════════════════════════════════════════════════════╝ */
+
   /* ── scrollbar ── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #3a414b; }
+  ::-webkit-scrollbar-thumb:hover { background: #a09890; }
 
   /* ── responsive ── */
   @media (max-width: 900px) {
@@ -878,7 +909,10 @@
   // PROJECT DETAIL MODAL
   // ════════════════════════════════════
 
+  let currentModalIndex = -1; // tracked for dev mode re-render
+
   function openModal(index) {
+    currentModalIndex = index;
     const p = projects[index];
     const overlay = document.getElementById('modal-overlay');
     const content = document.getElementById('modal-content');
@@ -978,6 +1012,96 @@
   // ── Init ──
   renderHome();
   renderProjects();
+
+  // ╔═══════════════════════════════════════════════════════════╗
+  // ║  DEV MODE — delete this block (+ CSS above) to remove it  ║
+  // ╚═══════════════════════════════════════════════════════════╝
+  (function devMode() {
+    const ENABLED = true; // ← set false to disable without deleting
+
+    if (!ENABLED) return;
+
+    let clicks = 0, clickTimer = null, active = false;
+
+    // 5 clicks on "William Culver" in the top-left to toggle
+    document.querySelector('.nav-name').addEventListener('click', () => {
+      clicks++;
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => { clicks = 0; }, 2000);
+      if (clicks >= 5) { clicks = 0; active = !active; onToggle(); }
+    });
+
+    function onToggle() {
+      let badge = document.getElementById('dev-badge');
+      if (active && !badge) {
+        badge = document.createElement('div');
+        badge.id = 'dev-badge';
+        badge.className = 'dev-badge';
+        badge.textContent = '⚙ DEV MODE';
+        document.body.appendChild(badge);
+      } else if (!active && badge) {
+        badge.remove();
+      }
+      renderProjects();
+      renderHome();
+      const overlay = document.getElementById('modal-overlay');
+      if (overlay.classList.contains('open') && currentModalIndex >= 0) {
+        openModal(currentModalIndex);
+      }
+    }
+
+    // wrap renderProjects — editable short descriptions on project cards
+    const _renderProjects = renderProjects;
+    renderProjects = function() {
+      _renderProjects();
+      if (!active) return;
+      document.querySelectorAll('.project-card').forEach((card, i) => {
+        const p = card.querySelector('.project-card-body p');
+        if (!p) return;
+        p.contentEditable = 'true';
+        p.addEventListener('blur', () => { projects[i].description = p.textContent.trim(); });
+      });
+    };
+
+    // wrap openModal — editable long description + add-screenshot button
+    const _openModal = openModal;
+    openModal = function(index) {
+      _openModal(index);
+      if (!active) return;
+
+      // editable long description
+      const descEl = document.querySelector('.modal-desc');
+      if (descEl) {
+        descEl.contentEditable = 'true';
+        descEl.addEventListener('blur', () => {
+          projects[index].longDescription = descEl.textContent.trim();
+        });
+      }
+
+      // add screenshot button (creates grid if project has none yet)
+      let grid = document.querySelector('.modal-screenshots');
+      if (!grid) {
+        grid = document.createElement('div');
+        grid.className = 'modal-screenshots';
+        const links = document.querySelector('.modal-links');
+        const body = document.querySelector('.modal-body');
+        links ? body.insertBefore(grid, links) : body.appendChild(grid);
+      }
+      const btn = document.createElement('div');
+      btn.className = 'dev-add-screenshot';
+      btn.textContent = '+ Add Screenshot';
+      btn.addEventListener('click', () => {
+        const url = prompt('Screenshot path or URL:');
+        if (url && url.trim()) {
+          if (!projects[index].screenshots) projects[index].screenshots = [];
+          projects[index].screenshots.push(url.trim());
+          openModal(index);
+        }
+      });
+      grid.appendChild(btn);
+    };
+  })();
+  // ╚═══════════════════════════════════════════════════════════╝
 </script>
 
 </body>
