@@ -115,7 +115,7 @@ const contactConfig = {
   "buttons": [
     {
       "label": "Email",
-      "href": "mailto:your@email.com",
+      "href": "mailto:will.coding11@gmail.com",
       "isEmail": true
     },
     {
