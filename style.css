@@ -465,8 +465,10 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   border: 2px solid var(--border);
   background: linear-gradient(145deg, #d8d4ce, #ccc7bf);
   position: relative;
-  background-size: cover;
-  background-position: center;
+}
+.about-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
 .about-text h2 {
   font-family: 'Syne', sans-serif;
@@ -526,8 +528,10 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   margin-bottom: 24px;
   position: relative;
   background: linear-gradient(145deg, #d8d4ce, #ccc7bf);
-  background-size: cover;
-  background-position: center;
+}
+.contact-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
 .contact-avatar::after {
   content: '';

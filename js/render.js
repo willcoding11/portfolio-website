@@ -106,7 +106,7 @@ function renderAbout() {
   document.getElementById('page-about').innerHTML = `
     <div class="about-hero"${aboutConfig.heroImage ? ` style="background-image:url('${aboutConfig.heroImage}')"` : ''}></div>
     <div class="about-bio">
-      <div class="about-avatar"${aboutConfig.avatarImage ? ` style="background-image:url('${aboutConfig.avatarImage}')"` : ''}></div>
+      <div class="about-avatar">${aboutConfig.avatarImage ? `<img src="${aboutConfig.avatarImage}" alt="Avatar">` : ''}</div>
       <div class="about-text">
         <h2>${aboutConfig.heading}</h2>
         ${aboutConfig.paragraphs.map(p => `<p${p.dim ? ' class="dim"' : ''}>${p.text}</p>`).join('')}
@@ -120,7 +120,7 @@ function renderAbout() {
 function renderContact() {
   document.getElementById('page-contact').innerHTML = `
     <div class="contact-wrap">
-      <div class="contact-avatar"${contactConfig.avatarImage ? ` style="background-image:url('${contactConfig.avatarImage}')"` : ''}></div>
+      <div class="contact-avatar">${contactConfig.avatarImage ? `<img src="${contactConfig.avatarImage}" alt="Avatar">` : ''}</div>
       <div class="contact-name">${contactConfig.name}</div>
       <div class="contact-sub">${contactConfig.subtitle}</div>
       <div class="contact-buttons">
