@@ -31,3 +31,5 @@ navLinks.forEach(link => {
 // ── Init ──
 renderHome();
 renderProjects();
+renderAbout();
+renderContact();
