@@ -5,7 +5,7 @@ const projects = [
   {
     "name": "Rocket Gravity",
     "description": "A 2D action shooter game.",
-    "longDescription": "A 2D action shooter game where you control a rocket. You shoot enemies, gain powerups, and defeat bosses. It's very and physics based.I made this game over the span of a few month, starting from having almost no experience in game design and Unity. This project taught me a lot, like UI design, graphic skills, polish, particles effects, and more. I submitted the game to Crazy Games, but it failed the 2 week basic launch period. Nevertheless I am happy i decided to work on this project as it helped me learn a lot and push through times when I didn't feel motivated.",
+    "longDescription": "A 2D action shooter game where you control a rocket. You shoot enemies, gain powerups, and defeat bosses. It's very and physics based. I made this game over the span of a few month, starting from having almost no experience in game design and Unity. This project taught me a lot, like UI design, graphic skills, polish, particles effects, and more. I submitted the game to Crazy Games, which gave me some great feedback on the game. I am happy I decided to work on this project as it helped me learn a lot and push through times when I didn't feel motivated.",
     "tags": [
       "Unity",
       "Game Dev"
@@ -29,7 +29,7 @@ const projects = [
   {
     "name": "Box Business",
     "description": "A factory simulation game.",
-    "longDescription": "A factory simulation game where you manage a box business. You create conveyor belts, automated machines, and more to produce boxes. Gain money, upgrade your factory, and expand your business. I submitted this game to Crazy Games but it was rejected after the 2 week basic launch period.I have been making progress on the game, readying it for a second submission by giving lots of new content and UI updates. I hope to soon be able to resubmit the game to Crazy Games and pass into full launch. I may also try to submit the game to Poki as well.",
+    "longDescription": "A factory simulation game where you manage a box business. You create conveyor belts, automated machines, and more to produce boxes. Gain money, upgrade your factory, and expand your business. I submitted this game to Crazy Games too, providing me with real user feedback. I have been making progress on the game, readying it for a second submission by giving lots of new content and UI updates. I hope to soon be able to resubmit the game to Crazy Games and pass into full launch. I may also try to submit the game to Poki as well.",
     "tags": [
       "HTML/CSS",
       "JavaScript",
@@ -79,18 +79,18 @@ const projects = [
 
 const bannerConfig = {
   "title": "William Culver",
-  "subtitle": "Developer & Maker — games, tools, and experiments."
+  "subtitle": "Turning ideas into fully launchable polished products."
 };
 
 const aboutConfig = {
   "heading": "About Me",
   "paragraphs": [
     {
-      "text": "I'm William Culver — a developer and maker who loves building things from the ground up. From games and interactive websites to 3D printing and hardware projects, I enjoy the challenge of turning ideas into something real and interactive.",
+      "text": "I'm William Culver — a developer and maker who loves building things from the ground up. From games and interactive websites to 3D printing and hardware projects, I enjoy the challenge of turning ideas into fully interactive and polished products.",
       "dim": false
     },
     {
-      "text": "I work across HTML, CSS, JavaScript, Java, Python, C#, and C++, and I'm always picking up new tools. I also use AI heavily to help speed up the projects I am working on as I find it very helpful. When I'm not coding, I'm usually designing 3D prints or experimenting with electronics.",
+      "text": "I work across HTML, CSS, JavaScript, Java, Python, C#, and C++, and I'm always picking up new tools. When I'm not coding, I'm usually designing 3D prints or experimenting with electronics.",
       "dim": true
     }
   ],
@@ -104,13 +104,14 @@ const aboutConfig = {
     "Unity",
     "HTML/CSS",
     "3D Printing",
-    "Game Dev"
+    "Game Dev",
+    "React"
   ]
 };
 
 const contactConfig = {
   "name": "William Culver",
-  "subtitle": "Available for freelance work and collaborations",
+  "subtitle": "Creating polished websites for small businesses",
   "email": "will.coding11@gmail.com",
   "avatarImage": "pfp.jpg",
   "buttons": [
