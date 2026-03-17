@@ -120,14 +120,19 @@ function renderAbout() {
 function renderContact() {
   document.getElementById('page-contact').innerHTML = `
     <div class="contact-wrap">
-      <div class="contact-avatar">${contactConfig.avatarImage ? `<img src="${contactConfig.avatarImage}" alt="Avatar">` : ''}</div>
-      <div class="contact-name">${contactConfig.name}</div>
-      <div class="contact-sub">${contactConfig.subtitle}</div>
       <form class="contact-form" action="https://formspree.io/f/xjgapzjw" method="POST">
-        <input type="text" name="name" placeholder="Your name" required class="contact-input">
+        <div class="contact-form-row">
+          <input type="text" name="name" placeholder="Your name" required class="contact-input">
+          <input type="email" name="email" placeholder="Your email" required class="contact-input">
+        </div>
         <textarea name="message" placeholder="Your message" required class="contact-input contact-textarea"></textarea>
         <button type="submit" class="contact-submit">Send Message</button>
       </form>
+      <div class="contact-card">
+        <div class="contact-avatar">${contactConfig.avatarImage ? `<img src="${contactConfig.avatarImage}" alt="Avatar">` : ''}</div>
+        <div class="contact-name">${contactConfig.name}</div>
+        <p class="contact-cta">Let's talk about making something great for your business.</p>
+      </div>
     </div>`;
 
   const form = document.querySelector('.contact-form');
