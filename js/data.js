@@ -94,7 +94,7 @@ const aboutConfig = {
       "dim": true
     }
   ],
-  "heroImage": "about me.jpg",
+  "heroImage": "about me.JPG",
   "avatarImage": "pfp.jpg",
   "skills": [
     "Python",
