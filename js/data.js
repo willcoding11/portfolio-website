@@ -127,17 +127,3 @@ const contactConfig = {
     }
   ]
 };
-
-// ── Restore any dev mode edits saved in localStorage ──
-(function restoreDevEdits() {
-  try {
-    const sp = localStorage.getItem('portfolio_projects');
-    if (sp) projects.splice(0, projects.length, ...JSON.parse(sp));
-    const sb = localStorage.getItem('portfolio_bannerConfig');
-    if (sb) Object.assign(bannerConfig, JSON.parse(sb));
-    const sa = localStorage.getItem('portfolio_aboutConfig');
-    if (sa) Object.assign(aboutConfig, JSON.parse(sa));
-    const sc = localStorage.getItem('portfolio_contactConfig');
-    if (sc) Object.assign(contactConfig, JSON.parse(sc));
-  } catch(e) {}
-})();

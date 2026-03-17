@@ -654,65 +654,6 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   color: var(--text-bright);
 }
 
-/* ╔══════════════════════════════════════════════════════╗
-   ║  DEV MODE STYLES — delete this block to remove       ║
-   ╚══════════════════════════════════════════════════════╝ */
-.dev-badge {
-  position: fixed; bottom: 16px; right: 16px;
-  background: #e85d2a; color: #fff;
-  font-size: 0.65rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 5px 14px; border-radius: 100px;
-  z-index: 9998; pointer-events: none;
-  font-family: 'Manrope', sans-serif;
-  box-shadow: 0 2px 12px rgba(232,93,42,0.4);
-}
-[contenteditable="true"] {
-  outline: 2px dashed #e85d2a; outline-offset: 2px;
-  border-radius: 3px; cursor: text;
-}
-[contenteditable="true"]:focus {
-  outline: 2px solid #e85d2a;
-  background: rgba(232,93,42,0.06);
-}
-.dev-add-screenshot {
-  display: flex; align-items: center; justify-content: center;
-  aspect-ratio: 16/10; border: 2px dashed #e85d2a;
-  border-radius: 10px; cursor: pointer;
-  color: #e85d2a; font-size: 0.8rem; font-weight: 600;
-  transition: background 0.2s; font-family: 'Manrope', sans-serif;
-}
-.dev-add-screenshot:hover { background: rgba(232,93,42,0.08); }
-.dev-tag-remove {
-  background: none; border: none; cursor: pointer;
-  color: #e85d2a; font-size: 0.8rem; padding: 0 0 0 5px;
-  line-height: 1; vertical-align: middle; font-weight: 700;
-}
-.dev-add-tag {
-  display: inline-flex; align-items: center;
-  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-  color: #e85d2a; border: 1.5px dashed #e85d2a;
-  padding: 3px 10px; border-radius: 100px; cursor: pointer;
-  transition: background 0.2s;
-}
-.dev-add-tag:hover { background: rgba(232,93,42,0.08); }
-.dev-edit-link {
-  background: rgba(232,93,42,0.12); border: 1px solid #e85d2a;
-  border-radius: 6px; cursor: pointer; color: #e85d2a;
-  font-size: 0.75rem; font-weight: 700; padding: 2px 7px;
-  margin-left: 8px; transition: background 0.2s;
-}
-.dev-edit-link:hover { background: rgba(232,93,42,0.22); }
-.dev-img-hint {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  background: rgba(232,93,42,0.08); border: 2px dashed #e85d2a;
-  color: #e85d2a; font-size: 0.75rem; font-weight: 700;
-  font-family: 'Manrope', sans-serif; cursor: pointer; opacity: 0;
-  transition: opacity 0.2s; border-radius: inherit; z-index: 2;
-}
-.dev-img-hint:hover { opacity: 1; }
-/* ╚══════════════════════════════════════════════════════╝ */
-
 /* ── scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
