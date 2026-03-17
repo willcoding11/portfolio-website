@@ -597,7 +597,7 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
 .contact-input:focus { border-color: var(--accent); }
 .contact-textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 220px;
 }
 .contact-submit {
   font-family: 'Syne', sans-serif;
