@@ -1,14 +1,14 @@
 // ════════════════════════════════════
-// PROJECT DETAIL MODAL
+// PROJECT DETAIL PAGE
 // ════════════════════════════════════
 
 let currentModalIndex = -1;
+let previousPage = 'home';
 
 function openModal(index) {
   currentModalIndex = index;
   const p = projects[index];
-  const overlay = document.getElementById('modal-overlay');
-  const content = document.getElementById('modal-content');
+  const el = document.getElementById('page-project');
 
   const linksHtml = Object.entries(p.links || {})
     .filter(([, url]) => url)
@@ -24,49 +24,50 @@ function openModal(index) {
       </a>`;
     }).join('');
 
-  content.innerHTML = `
-    <div class="modal-hero">
-      ${p.videos && p.videos.length
-        ? `<video src="${p.videos[0]}" controls poster="${p.thumbnail}"></video>`
-        : `<img src="${p.thumbnail}" alt="${p.name}">`
-      }
-    </div>
-    <div class="modal-body">
-      <div class="modal-tags">
-        ${p.tags.map(t => `<span>${t}</span>`).join('')}
+  el.innerHTML = `
+    <div class="project-detail">
+      <button class="project-back" onclick="goBackFromProject()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back
+      </button>
+      <div class="project-detail-hero">
+        ${p.videos && p.videos.length
+          ? `<video src="${p.videos[0]}" controls poster="${p.thumbnail}"></video>`
+          : `<img src="${p.thumbnail}" alt="${p.name}">`
+        }
       </div>
-      <h2>${p.name}</h2>
-      <p class="modal-desc">${p.longDescription}</p>
-      ${p.screenshots && p.screenshots.length ? `
-        <div class="modal-screenshots">
-          ${p.screenshots.map(s => `<img src="${s}" alt="Screenshot">`).join('')}
+      <div class="project-detail-body">
+        <div class="modal-tags">
+          ${p.tags.map(t => `<span>${t}</span>`).join('')}
         </div>
-      ` : ''}
-      ${p.videos && p.videos.length > 1 ? p.videos.slice(1).map(v => `
-        <video class="modal-video" src="${v}" controls></video>
-      `).join('') : ''}
-      ${linksHtml ? `<div class="modal-links">${linksHtml}</div>` : ''}
+        <h2>${p.name}</h2>
+        <p class="modal-desc">${p.longDescription}</p>
+        ${p.screenshots && p.screenshots.length ? `
+          <div class="modal-screenshots">
+            ${p.screenshots.map(s => `<img src="${s}" alt="Screenshot">`).join('')}
+          </div>
+        ` : ''}
+        ${p.videos && p.videos.length > 1 ? p.videos.slice(1).map(v => `
+          <video class="modal-video" src="${v}" controls></video>
+        `).join('') : ''}
+        ${linksHtml ? `<div class="modal-links">${linksHtml}</div>` : ''}
+      </div>
     </div>`;
 
-  overlay.classList.add('open');
-  void overlay.offsetWidth;
-  overlay.classList.add('visible');
-  document.body.style.overflow = 'hidden';
+  // remember which page we came from
+  const activePage = document.querySelector('.page.active.visible');
+  if (activePage) {
+    previousPage = activePage.id.replace('page-', '');
+  }
+
+  switchPage('project');
 }
 
-function closeModal() {
-  const overlay = document.getElementById('modal-overlay');
-  overlay.classList.remove('visible');
-  setTimeout(() => {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-    overlay.querySelectorAll('video').forEach(v => v.pause());
-  }, 350);
+function goBackFromProject() {
+  // pause any playing videos
+  document.getElementById('page-project').querySelectorAll('video').forEach(v => v.pause());
+  switchPage(previousPage);
 }
-
-document.getElementById('modal-overlay').addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) closeModal();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
-});
