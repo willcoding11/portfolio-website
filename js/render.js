@@ -104,7 +104,7 @@ const LINK_SVG  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 function renderAbout() {
   document.getElementById('page-about').innerHTML = `
-    <div class="about-hero"${aboutConfig.heroImage ? ` style="background-image:url('${aboutConfig.heroImage}')"` : ''}></div>
+    <div class="about-hero">${aboutConfig.heroImage ? `<img src="${aboutConfig.heroImage}" alt="About">` : ''}</div>
     <div class="about-bio">
       <div class="about-avatar">${aboutConfig.avatarImage ? `<img src="${aboutConfig.avatarImage}" alt="Avatar">` : ''}</div>
       <div class="about-text">
