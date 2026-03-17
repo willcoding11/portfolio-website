@@ -553,41 +553,58 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   color: var(--text-bright);
   margin-bottom: 6px;
 }
-.contact-email-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 28px;
-  margin-top: 8px;
-}
-.contact-email-text {
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.95rem;
-  color: var(--text);
-  user-select: all;
-  letter-spacing: 0.01em;
-}
-.contact-copy-btn {
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 5px 14px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.contact-copy-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-glow);
-}
 .contact-sub {
   font-size: 0.85rem;
   color: var(--text-dim);
-  margin-bottom: 36px;
+  margin-bottom: 32px;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 420px;
+  text-align: left;
+}
+.contact-input {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text-bright);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.contact-input::placeholder { color: var(--text-dim); }
+.contact-input:focus { border-color: var(--accent); }
+.contact-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.contact-submit {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.35s;
+}
+.contact-submit:hover {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -6px rgba(196,122,58,0.2);
+}
+.contact-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 .contact-buttons { display: flex; gap: 20px; }
 .contact-btn {

@@ -123,18 +123,38 @@ function renderContact() {
       <div class="contact-avatar">${contactConfig.avatarImage ? `<img src="${contactConfig.avatarImage}" alt="Avatar">` : ''}</div>
       <div class="contact-name">${contactConfig.name}</div>
       <div class="contact-sub">${contactConfig.subtitle}</div>
-      <div class="contact-email-row">
-        <span class="contact-email-text">${contactConfig.email}</span>
-        <button class="contact-copy-btn" onclick="navigator.clipboard.writeText('${contactConfig.email}').then(()=>{this.textContent='Copied!';setTimeout(()=>{this.textContent='Copy'},1200)})">Copy</button>
-      </div>
-      <div class="contact-buttons">
-        ${contactConfig.buttons.filter(btn => !btn.isEmail).map((btn, i) => `
-          <a class="contact-btn" href="${btn.href}" target="_blank" rel="noopener">
-            ${LINK_SVG}
-            <span>${btn.label}</span>
-          </a>`).join('')}
-      </div>
+      <form class="contact-form" action="https://formspree.io/f/xjgapzjw" method="POST">
+        <input type="text" name="name" placeholder="Your name" required class="contact-input">
+        <textarea name="message" placeholder="Your message" required class="contact-input contact-textarea"></textarea>
+        <button type="submit" class="contact-submit">Send Message</button>
+      </form>
     </div>`;
+
+  const form = document.querySelector('.contact-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.contact-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Sent!';
+        form.reset();
+        setTimeout(() => { btn.textContent = 'Send Message'; btn.disabled = false; }, 2000);
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  });
 }
 
 function renderProjects() {
