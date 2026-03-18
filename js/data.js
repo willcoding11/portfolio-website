@@ -74,6 +74,31 @@ const projects = [
     "videos": [
       "projects/Messaging App/videos/Messaging App Video.mp4"
     ]
+  },
+  {
+    "name": "Coffee Website",
+    "description": "Website for a small coffee bussiness.",
+    "longDescription": "Lets users order items online and pick either to pick up or have their food be delivered. Shows the history of the company and a little bit about them.",
+    "tags": [
+      "WEB-DESIGN",
+      "HTML",
+      "CSS",
+      "JAVASCRIPT"
+    ],
+    "date": "2026-03",
+    "featured": false,
+    "links": {
+      "live": "https://willcoding11.github.io/coffee-website/"
+    },
+    "folder": "projects/Coffee Website",
+    "thumbnail": "projects/Coffee Website/screenshots/Screenshot.png",
+    "screenshots": [
+      "projects/Coffee Website/screenshots/Screenshot 2.png",
+      "projects/Coffee Website/screenshots/screencapture-willcoding11-github-io-coffee-website-2026-03-17-21_50_27.png"
+    ],
+    "videos": [
+      "projects/Coffee Website/videos/Recording 2026-03-18 165025.mp4"
+    ]
   }
 ];
 
@@ -113,6 +138,7 @@ const contactConfig = {
   "name": "William Culver",
   "subtitle": "Creating polished websites for small businesses",
   "email": "will.coding11@gmail.com",
+  "cta": "Let's talk about making something great for your business.",
   "avatarImage": "pfp.jpg",
   "buttons": [
     {

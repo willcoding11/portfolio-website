@@ -1,14 +1,15 @@
 {
   "name": "Rocket Gravity",
   "description": "A 2D action shooter game.",
-  "longDescription": "A 2D action shooter game where you control a rocket. You shoot enemies, gain powerups, and defeat bosses. It's very movement based and has a lot of potential for future updates.",
-  "tags": ["Unity", "Game Dev"],
-  "date": "2025-9",
-  "featured": false,
+  "longDescription": "A 2D action shooter game where you control a rocket. You shoot enemies, gain powerups, and defeat bosses. It's very and physics based. I made this game over the span of a few month, starting from having almost no experience in game design and Unity. This project taught me a lot, like UI design, graphic skills, polish, particles effects, and more. I submitted the game to Crazy Games, which gave me some great feedback on the game. I am happy I decided to work on this project as it helped me learn a lot and push through times when I didn't feel motivated.",
+  "tags": [
+    "Unity",
+    "Game Dev"
+  ],
+  "date": "2025-09",
+  "featured": true,
   "links": {
-    "live": "https://willofcoding.itch.io/rocket-gravity",
-    "github": "",
-    "download": ""
+    "live": "https://willofcoding.itch.io/rocket-gravity"
   },
   "thumbnail": "screenshots/thumbnail.png",
   "screenshots": [

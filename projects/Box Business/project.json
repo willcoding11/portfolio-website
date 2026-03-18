@@ -1,14 +1,16 @@
 {
   "name": "Box Business",
   "description": "A factory simulation game.",
-  "longDescription": "A factory simulation game where you manage a box business. You create conveyor belts, automated machines, and more to produce boxes. Gain money, upgrade your factory, and expand your business. It's a very simple game with a lot of potential for future updates.",
-  "tags": ["HTML/CSS", "JavaScript", "Game Dev"],
+  "longDescription": "A factory simulation game where you manage a box business. You create conveyor belts, automated machines, and more to produce boxes. Gain money, upgrade your factory, and expand your business. I submitted this game to Crazy Games too, providing me with real user feedback. I have been making progress on the game, readying it for a second submission by giving lots of new content and UI updates. I hope to soon be able to resubmit the game to Crazy Games and pass into full launch. I may also try to submit the game to Poki as well.",
+  "tags": [
+    "HTML/CSS",
+    "JavaScript",
+    "Game Dev"
+  ],
   "date": "2025-10",
   "featured": true,
   "links": {
-    "live": "https://www.crazygames.com/preview/e998d4ec-a316-4c96-9b0d-94d338907f45?gameBuildId=db4233ce-8c9d-476a-a6f1-26c37fac6d1d&qaTool=true&disableSubmitQA=true&role=developer",
-    "github": "",
-    "download": ""
+    "live": "https://www.crazygames.com/preview/e998d4ec-a316-4c96-9b0d-94d338907f45?gameBuildId=db4233ce-8c9d-476a-a6f1-26c37fac6d1d&qaTool=true&disableSubmitQA=true&role=developer"
   },
   "thumbnail": "screenshots/Box Business 16 9.png",
   "screenshots": [

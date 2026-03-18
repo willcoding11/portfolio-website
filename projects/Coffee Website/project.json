@@ -1,0 +1,24 @@
+{
+  "name": "Coffee Website",
+  "description": "Website for a small coffee bussiness.",
+  "longDescription": "Lets users order items online and pick either to pick up or have their food be delivered. Shows the history of the company and a little bit about them.",
+  "tags": [
+    "WEB-DESIGN",
+    "HTML",
+    "CSS",
+    "JAVASCRIPT"
+  ],
+  "date": "2026-03",
+  "featured": false,
+  "links": {
+    "live": "https://willcoding11.github.io/coffee-website/"
+  },
+  "thumbnail": "screenshots/Screenshot.png",
+  "screenshots": [
+    "screenshots/Screenshot 2.png",
+    "screenshots/screencapture-willcoding11-github-io-coffee-website-2026-03-17-21_50_27.png"
+  ],
+  "videos": [
+    "videos/Recording 2026-03-18 165025.mp4"
+  ]
+}

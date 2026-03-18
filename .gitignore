@@ -1,6 +1,9 @@
 # Wireframe images (not needed on site)
 IMG_*.jpg
 
+# Dev mode (local only)
+dev-server.js
+
 # OS files
 .DS_Store
 Thumbs.db

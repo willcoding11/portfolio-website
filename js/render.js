@@ -131,7 +131,7 @@ function renderContact() {
       <div class="contact-card">
         <div class="contact-avatar">${contactConfig.avatarImage ? `<img src="${contactConfig.avatarImage}" alt="Avatar">` : ''}</div>
         <div class="contact-name">${contactConfig.name}</div>
-        <p class="contact-cta">Let's talk about making something great for your business.</p>
+        <p class="contact-cta">${contactConfig.cta || "Let's talk about making something great for your business."}</p>
       </div>
     </div>`;
 
