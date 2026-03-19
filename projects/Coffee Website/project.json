@@ -13,10 +13,11 @@
   "links": {
     "live": "https://willcoding11.github.io/coffee-website/"
   },
-  "thumbnail": "screenshots/Screenshot.png",
+  "thumbnail": "screenshots/Screenshot 2.png",
   "screenshots": [
     "screenshots/Screenshot 2.png",
-    "screenshots/screencapture-willcoding11-github-io-coffee-website-2026-03-17-21_50_27.png"
+    "screenshots/screencapture-willcoding11-github-io-coffee-website-2026-03-17-21_50_27.png",
+    "screenshots/Screenshot.png"
   ],
   "videos": [
     "videos/Recording 2026-03-18 165025.mp4"
