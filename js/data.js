@@ -109,18 +109,18 @@ const homeProjects = ["Rocket Gravity", "Coffee Website", "Messaging App"];
 // Content sections shown below the project grid on the home page
 const homeSections = [
   {
-    "heading": "Building Real Products",
-    "text": "I don't just write code — I build things people actually use. From games submitted to major platforms to websites serving real businesses, every project goes through design, development, polish, and launch.",
-    "image": "pfp.jpg",
-    "imageLeft": true,
-    "bgColor": "#eae6e1"
-  },
-  {
     "heading": "Always Learning, Always Shipping",
-    "text": "Whether it's picking up a new framework, learning 3D printing, or diving into game physics — I'm driven by curiosity and the satisfaction of shipping something complete. Every finished project teaches me something new.",
+    "text": "Whether it's picking up a new tool, learning 3D printing, or diving into UX design — I'm driven by curiosity and the satisfaction of shipping something complete. Every finished project teaches me something new.",
     "image": "about me.JPG",
     "imageLeft": false,
     "bgColor": "#f5f3f0"
+  },
+  {
+    "heading": "UX/UI Design",
+    "text": "UX Design is an important part of every website. It is what makes users have an enjoyable time on your site, looking at your services and projects. That's why I use UX design in my website development by focusing on a clean yet professional look and colors the audience loves.",
+    "image": "drawing-5.png",
+    "imageLeft": true,
+    "bgColor": "#e3ddd6"
   }
 ];
 
