@@ -121,7 +121,7 @@ const homeSections = [
   },
   {
     "heading": "UX/UI Design",
-    "text": "UX Design is an important part of every website. It is what makes users have an enjoyable time on your site, looking at your services and projects. That's why I use UX design in my website development by focusing on a clean yet professional look and colors the audience loves.",
+    "text": "UX Design is an important part of every website. It is what makes users have an enjoyable time on your site, looking at your services and projects. That's why I use UX design in my website development by focusing on a clean yet professional look and colors customers love.",
     "image": "drawing-5.png",
     "imageLeft": true,
     "bgColor": "#e3ddd6"

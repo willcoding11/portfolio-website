@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"\" \"C:/Users/willi/OneDrive/Desktop/Portfolio Website/index.html\")",
+      "Read(//c/Users/willi/.git/**)",
+      "Read(//c/Users/willi/OneDrive/Desktop/**)",
+      "Bash(cd \"C:/Users/willi/OneDrive/Desktop/Portfolio Website\" && gh auth status 2>&1)",
+      "Bash(where gh:*)",
+      "Read(//c/Program Files/GitHub CLI/**)",
+      "Read(//c/Users/willi/OneDrive/Desktop/Portfolio Website/$LOCALAPPDATA/GitHub CLI/**)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/willi/OneDrive/Desktop/Portfolio Website/**)",
+      "Bash(done)",
+      "Bash(node -c js/data.js)",
+      "Bash(node -c js/render.js)",
+      "Bash(node -c js/dev.js)",
+      "Bash(node -c js/nav.js)",
+      "Bash(node -c dev-server.js)"
+    ]
+  }
+}
