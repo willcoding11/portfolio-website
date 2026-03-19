@@ -81,7 +81,7 @@ const projects = [
   {
     "name": "Box Business",
     "description": "A factory simulation game.",
-    "longDescription": "A factory simulation game where you manage a box business. You create conveyor belts, automated machines, and more to produce boxes. Gain money, upgrade your factory, and expand your business. I submitted this game to Crazy Games too, providing me with real user feedback. I have been making progress on the game, readying it for a second submission by giving lots of new content and UI updates. I hope to soon be able to resubmit the game to Crazy Games and pass into full launch. I may also try to submit the game to Poki as well.",
+    "longDescription": "A factory simulation game where you manage a box business. You create conveyor belts, automated machines, and more to produce boxes. Gain money, upgrade your factory, and expand your business. I submitted this game to Crazy Games too, providing me with real user feedback.",
     "tags": [
       "HTML/CSS",
       "JavaScript",
