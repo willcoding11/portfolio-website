@@ -179,3 +179,9 @@ const contactConfig = {
     }
   ]
 };
+
+const footerConfig = {
+  "heading": "Let's Build Something Together",
+  "text": "Have a project in mind? I'm always open to new opportunities and collaborations.",
+  "copyright": "William Culver"
+};

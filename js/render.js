@@ -177,6 +177,17 @@ function renderContact() {
   });
 }
 
+function renderFooter() {
+  document.getElementById('site-footer').innerHTML = `
+    <div class="footer-inner">
+      <h2>${footerConfig.heading}</h2>
+      <p>${footerConfig.text}</p>
+      <div class="footer-bottom">
+        <span>&copy; ${new Date().getFullYear()} ${footerConfig.copyright}</span>
+      </div>
+    </div>`;
+}
+
 function renderProjects() {
   const el = document.getElementById('page-projects');
   el.innerHTML = `

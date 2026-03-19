@@ -202,6 +202,9 @@
     // Contact card edit
     addEditBtn('.contact-card', () => editSection('contact'));
 
+    // Footer edit
+    addEditBtn('#site-footer', () => editSection('footer'));
+
     // Home section edits
     qsa('.home-section').forEach((sec, i) => {
       addEditBtn(sec, () => editHomeSection(i), true);
@@ -272,11 +275,13 @@
     if (type === 'banner')  data = JSON.parse(JSON.stringify(bannerConfig));
     if (type === 'about')   data = JSON.parse(JSON.stringify(aboutConfig));
     if (type === 'contact') data = JSON.parse(JSON.stringify(contactConfig));
+    if (type === 'footer')  data = JSON.parse(JSON.stringify(footerConfig));
     editorState = { type, data };
 
     if (type === 'banner')  renderBannerEditor();
     if (type === 'about')   renderAboutEditor();
     if (type === 'contact') renderContactEditor();
+    if (type === 'footer')  renderFooterEditor();
 
     openEditor('Edit ' + type.charAt(0).toUpperCase() + type.slice(1));
   }
@@ -291,6 +296,21 @@
         <input type="text" id="dev-e-subtitle" value="${esc(d.subtitle)}"></div>`;
     qs('#dev-e-title', panelBody).addEventListener('input', e => d.title = e.target.value);
     qs('#dev-e-subtitle', panelBody).addEventListener('input', e => d.subtitle = e.target.value);
+  }
+
+  /* ── Footer ── */
+  function renderFooterEditor() {
+    const d = editorState.data;
+    panelBody.innerHTML = `
+      <div class="dev-field"><label>Heading</label>
+        <input type="text" id="dev-e-fhead" value="${esc(d.heading)}"></div>
+      <div class="dev-field"><label>Text</label>
+        <textarea id="dev-e-ftext" rows="3">${esc(d.text)}</textarea></div>
+      <div class="dev-field"><label>Copyright Name</label>
+        <input type="text" id="dev-e-fcopy" value="${esc(d.copyright)}"></div>`;
+    qs('#dev-e-fhead', panelBody).addEventListener('input', e => d.heading = e.target.value);
+    qs('#dev-e-ftext', panelBody).addEventListener('input', e => d.text = e.target.value);
+    qs('#dev-e-fcopy', panelBody).addEventListener('input', e => d.copyright = e.target.value);
   }
 
   /* ── About ── */
@@ -798,6 +818,8 @@
       Object.assign(aboutConfig, data);
     } else if (type === 'contact') {
       Object.assign(contactConfig, data);
+    } else if (type === 'footer') {
+      Object.assign(footerConfig, data);
     } else if (type === 'section') {
       // Upload pending image
       const pf = editorState.pendingFiles;
@@ -892,7 +914,7 @@
       const res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ projects, homeProjects, homeSections, bannerConfig, aboutConfig, contactConfig }),
+        body: JSON.stringify({ projects, homeProjects, homeSections, bannerConfig, aboutConfig, contactConfig, footerConfig }),
       });
       if (!res.ok) throw new Error('Save failed');
       dirty = false;
@@ -911,6 +933,7 @@
     renderProjects();
     renderAbout();
     renderContact();
+    renderFooter();
     if (active) setTimeout(addOverlays, 400);
   }
 })();

@@ -33,3 +33,4 @@ renderHome();
 renderProjects();
 renderAbout();
 renderContact();
+renderFooter();
