@@ -104,7 +104,11 @@ const projects = [
 ];
 
 // Projects to show on the home page (by name, in order)
-const homeProjects = ["Rocket Gravity", "Coffee Website", "Messaging App"];
+const homeProjects = [
+  "Rocket Gravity",
+  "Coffee Website",
+  "Messaging App"
+];
 
 // Content sections shown below the project grid on the home page
 const homeSections = [
@@ -113,7 +117,7 @@ const homeSections = [
     "text": "Whether it's picking up a new tool, learning 3D printing, or diving into UX design — I'm driven by curiosity and the satisfaction of shipping something complete. Every finished project teaches me something new.",
     "image": "about me.JPG",
     "imageLeft": false,
-    "bgColor": "#f5f3f0"
+    "bgColor": "#d1dee9"
   },
   {
     "heading": "UX/UI Design",
