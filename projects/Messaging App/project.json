@@ -1,7 +1,7 @@
 {
   "name": "Messaging App",
   "description": "A messaging app website made for desktop and mobile.",
-  "longDescription": "A messaging app website made for desktop and mobile. It's a simple app that allows you to send and receive messages. It was made as a personal project to learn more about web development. The service runs off a free tier of Render and was built into an Android app later.Made as a test project to learn more about web services and online communication between sites. I made it as an HTML project to run on desktop first, and then added a mobile mode for the website. I also made an app for it in Android Studio that still ran off of the Render Service I had set up.",
+  "longDescription": "A messaging app website made for desktop and mobile. It's a simple app that allows you to send and receive messages. It was made as a personal project to learn more about web development. The service runs off a free tier of Render and was built into an Android app later. Made as a test project to learn more about web services and online communication between sites. I made it as an HTML project to run on desktop first, and then added a mobile mode for the website. I also made an app for it in Android Studio that still ran off of the Render Service I had set up.",
   "tags": [
     "React",
     "JavaScript",
