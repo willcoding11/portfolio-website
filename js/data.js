@@ -106,6 +106,24 @@ const projects = [
 // Projects to show on the home page (by name, in order)
 const homeProjects = ["Rocket Gravity", "Coffee Website", "Messaging App"];
 
+// Content sections shown below the project grid on the home page
+const homeSections = [
+  {
+    "heading": "Building Real Products",
+    "text": "I don't just write code — I build things people actually use. From games submitted to major platforms to websites serving real businesses, every project goes through design, development, polish, and launch.",
+    "image": "pfp.jpg",
+    "imageLeft": true,
+    "bgColor": "#eae6e1"
+  },
+  {
+    "heading": "Always Learning, Always Shipping",
+    "text": "Whether it's picking up a new framework, learning 3D printing, or diving into game physics — I'm driven by curiosity and the satisfaction of shipping something complete. Every finished project teaches me something new.",
+    "image": "about me.JPG",
+    "imageLeft": false,
+    "bgColor": "#f5f3f0"
+  }
+];
+
 const bannerConfig = {
   "title": "William Culver",
   "subtitle": "Turning ideas into fully launchable polished products."

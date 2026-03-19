@@ -202,6 +202,22 @@
     // Contact card edit
     addEditBtn('.contact-card', () => editSection('contact'));
 
+    // Home section edits
+    qsa('.home-section').forEach((sec, i) => {
+      addEditBtn(sec, () => editHomeSection(i), true);
+    });
+
+    // Add-section button on home page
+    const sectionsWrap = qs('.home-sections');
+    if (sectionsWrap && !qs('.dev-add-section', sectionsWrap)) {
+      const addSec = document.createElement('div');
+      addSec.className = 'dev-add-card dev-overlay-item dev-add-section';
+      addSec.textContent = '+ New Section';
+      addSec.style.minHeight = '120px';
+      addSec.addEventListener('click', newHomeSection);
+      sectionsWrap.appendChild(addSec);
+    }
+
     // Project card edits
     qsa('.project-card').forEach((card, i) => {
       // Cards appear twice (home + projects page), map index to actual project
@@ -670,6 +686,106 @@
   }
 
   // ═══════════════════════════════════
+  // HOME SECTION EDITOR
+  // ═══════════════════════════════════
+  function editHomeSection(index) {
+    const copy = JSON.parse(JSON.stringify(homeSections[index]));
+    copy._index = index;
+    editorState = { type: 'section', data: copy, pendingFiles: { image: null } };
+    renderSectionEditor();
+    openEditor('Edit Section');
+  }
+
+  function newHomeSection() {
+    const data = {
+      heading: '', text: '', image: '',
+      imageLeft: true, bgColor: '#f5f3f0',
+      _isNew: true,
+    };
+    editorState = { type: 'section', data, pendingFiles: { image: null } };
+    renderSectionEditor();
+    openEditor('New Section');
+  }
+
+  function renderSectionEditor() {
+    const d = editorState.data;
+    panelBody.innerHTML = `
+      <div class="dev-field"><label>Heading</label>
+        <input type="text" id="dev-s-heading" value="${esc(d.heading)}"></div>
+      <div class="dev-field"><label>Text</label>
+        <textarea id="dev-s-text" rows="5">${esc(d.text)}</textarea></div>
+
+      <div class="dev-field"><label>Image</label>
+        <div id="dev-s-img-preview"></div>
+        <button class="dev-btn" id="dev-s-img-upload" style="font-size:.78rem;margin-top:6px">Upload Image</button>
+        <input type="file" accept="image/*" style="display:none" id="dev-s-img-file">
+        <div style="margin-top:6px"><label style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim)">Or image path</label>
+          <input type="text" id="dev-s-img-path" value="${esc(d.image)}" style="width:100%;font-size:.85rem;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text-bright);margin-top:4px">
+        </div>
+      </div>
+
+      <div class="dev-check">
+        <input type="checkbox" id="dev-s-imgleft" ${d.imageLeft ? 'checked' : ''}> Image on left</div>
+
+      <div class="dev-field"><label>Background Color</label>
+        <div style="display:flex;gap:10px;align-items:center">
+          <input type="color" id="dev-s-bgcolor" value="${d.bgColor || '#f5f3f0'}" style="width:48px;height:36px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:none;padding:2px">
+          <input type="text" id="dev-s-bgcolor-text" value="${esc(d.bgColor || '#f5f3f0')}" style="flex:1;font-size:.85rem;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text-bright)">
+        </div>
+      </div>
+
+      ${!d._isNew ? '<button class="dev-delete-btn" id="dev-s-delete">Delete Section</button>' : ''}`;
+
+    qs('#dev-s-heading', panelBody).addEventListener('input', e => d.heading = e.target.value);
+    qs('#dev-s-text', panelBody).addEventListener('input', e => d.text = e.target.value);
+    qs('#dev-s-imgleft', panelBody).addEventListener('change', e => d.imageLeft = e.target.checked);
+
+    // Background color
+    qs('#dev-s-bgcolor', panelBody).addEventListener('input', e => {
+      d.bgColor = e.target.value;
+      qs('#dev-s-bgcolor-text', panelBody).value = e.target.value;
+    });
+    qs('#dev-s-bgcolor-text', panelBody).addEventListener('input', e => {
+      d.bgColor = e.target.value;
+      if (/^#[0-9a-fA-F]{6}$/.test(e.target.value)) qs('#dev-s-bgcolor', panelBody).value = e.target.value;
+    });
+
+    // Image preview
+    renderSectionImgPreview();
+    qs('#dev-s-img-path', panelBody).addEventListener('input', e => {
+      d.image = e.target.value;
+      renderSectionImgPreview();
+    });
+    qs('#dev-s-img-upload', panelBody).addEventListener('click', () => qs('#dev-s-img-file', panelBody).click());
+    qs('#dev-s-img-file', panelBody).addEventListener('change', e => {
+      const file = e.target.files[0]; if (!file) return;
+      editorState.pendingFiles.image = file;
+      renderSectionImgPreview();
+    });
+
+    // Delete
+    const delBtn = qs('#dev-s-delete', panelBody);
+    if (delBtn) delBtn.addEventListener('click', () => {
+      if (!confirm('Delete this section?')) return;
+      homeSections.splice(d._index, 1);
+      markDirty();
+      closeEditor();
+      refresh();
+      showToast('Section deleted', 'success');
+    });
+  }
+
+  function renderSectionImgPreview() {
+    const d = editorState.data;
+    const pending = editorState.pendingFiles.image;
+    const container = qs('#dev-s-img-preview', panelBody);
+    const src = pending ? URL.createObjectURL(pending) : d.image;
+    container.innerHTML = src
+      ? `<div class="dev-img-preview"><img src="${esc(src)}"><span style="font-size:.78rem;color:var(--text-dim)">${pending ? pending.name : d.image}</span></div>`
+      : '<span style="font-size:.82rem;color:var(--text-dim)">No image set</span>';
+  }
+
+  // ═══════════════════════════════════
   // APPLY EDITOR
   // ═══════════════════════════════════
   async function applyEditor() {
@@ -682,6 +798,26 @@
       Object.assign(aboutConfig, data);
     } else if (type === 'contact') {
       Object.assign(contactConfig, data);
+    } else if (type === 'section') {
+      // Upload pending image
+      const pf = editorState.pendingFiles;
+      if (pf.image) {
+        try {
+          const p = await uploadFile(pf.image.name, pf.image);
+          if (p) data.image = p;
+        } catch (e) {
+          showToast('Upload error: ' + e.message, 'error');
+          return;
+        }
+      }
+      if (data._isNew) {
+        delete data._isNew;
+        homeSections.push(data);
+      } else {
+        const idx = data._index;
+        delete data._index;
+        homeSections[idx] = data;
+      }
     } else if (type === 'project') {
       // Derive folder for new projects
       if (data._isNew && data.name) {
@@ -756,7 +892,7 @@
       const res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ projects, bannerConfig, aboutConfig, contactConfig }),
+        body: JSON.stringify({ projects, homeProjects, homeSections, bannerConfig, aboutConfig, contactConfig }),
       });
       if (!res.ok) throw new Error('Save failed');
       dirty = false;
