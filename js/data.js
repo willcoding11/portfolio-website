@@ -90,7 +90,7 @@ const projects = [
     "date": "2025-10",
     "featured": true,
     "links": {
-      "live": "https://www.crazygames.com/preview/e998d4ec-a316-4c96-9b0d-94d338907f45?gameBuildId=db4233ce-8c9d-476a-a6f1-26c37fac6d1d&qaTool=true&disableSubmitQA=true&role=developer"
+      "live": "https://willofcoding.itch.io/box-business2"
     },
     "folder": "projects/Box Business",
     "thumbnail": "projects/Box Business/screenshots/Box Business 16 9.png",
