@@ -13,11 +13,11 @@ function switchPage(id) {
   navLinks.forEach(l => l.classList.remove('active'));
 
   setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     const target = document.getElementById('page-' + id);
     target.classList.add('active');
     void target.offsetWidth;
     requestAnimationFrame(() => target.classList.add('visible'));
-    window.scrollTo(0, 0);
   }, 360);
 
   navLinks.forEach(l => {
