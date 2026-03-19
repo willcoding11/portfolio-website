@@ -311,11 +311,9 @@
         <input type="text" id="dev-e-fhead" value="${esc(d.heading)}"></div>
       <div class="dev-field"><label>Text</label>
         <textarea id="dev-e-ftext" rows="3">${esc(d.text)}</textarea></div>
-      <div class="dev-field"><label>Copyright Name</label>
-        <input type="text" id="dev-e-fcopy" value="${esc(d.copyright)}"></div>`;
+`;
     qs('#dev-e-fhead', panelBody).addEventListener('input', e => d.heading = e.target.value);
     qs('#dev-e-ftext', panelBody).addEventListener('input', e => d.text = e.target.value);
-    qs('#dev-e-fcopy', panelBody).addEventListener('input', e => d.copyright = e.target.value);
   }
 
   /* ── About ── */

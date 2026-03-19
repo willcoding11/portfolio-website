@@ -703,15 +703,6 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   color: #a09890;
   margin-bottom: 40px;
 }
-.footer-bottom {
-  border-top: 1px solid rgba(197, 189, 180, 0.15);
-  padding-top: 24px;
-}
-.footer-bottom span {
-  font-size: 0.78rem;
-  color: #7a7065;
-}
-
 /* ── scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
