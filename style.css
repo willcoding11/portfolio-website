@@ -701,6 +701,25 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   color: #a09890;
   margin-bottom: 40px;
 }
+.footer-contact-btn {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f5f3f0;
+  background: transparent;
+  border: 1px solid rgba(245, 243, 240, 0.25);
+  border-radius: 100px;
+  padding: 14px 36px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+.footer-contact-btn:hover {
+  background: rgba(245, 243, 240, 0.1);
+  border-color: rgba(245, 243, 240, 0.5);
+  transform: translateY(-2px);
+}
+
 /* ── scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

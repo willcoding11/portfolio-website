@@ -182,6 +182,7 @@ function renderFooter() {
     <div class="footer-inner">
       <h2>${footerConfig.heading}</h2>
       <p>${footerConfig.text}</p>
+      <button class="footer-contact-btn" onclick="switchPage('contact')">Get in Touch</button>
     </div>`;
 }
 
