@@ -3,6 +3,58 @@
 // ════════════════════════════════════
 const projects = [
   {
+    "name": "Coffee Website",
+    "description": "Website for a small coffee bussiness.",
+    "longDescription": "Lets users order items online and pick either to pick up or have their food be delivered. Shows the history of the company and a little bit about them.",
+    "tags": [
+      "WEB-DESIGN",
+      "HTML",
+      "CSS",
+      "JAVASCRIPT"
+    ],
+    "date": "2026-03",
+    "featured": false,
+    "links": {
+      "live": "https://willcoding11.github.io/coffee-website/"
+    },
+    "folder": "projects/Coffee Website",
+    "thumbnail": "projects/Coffee Website/screenshots/Screenshot 2.png",
+    "screenshots": [
+      "projects/Coffee Website/screenshots/Screenshot 2.png",
+      "projects/Coffee Website/screenshots/screencapture-willcoding11-github-io-coffee-website-2026-03-17-21_50_27.png",
+      "projects/Coffee Website/screenshots/Screenshot.png"
+    ],
+    "videos": [
+      "projects/Coffee Website/videos/Recording 2026-03-18 165025.mp4"
+    ]
+  },
+  {
+    "name": "Messaging App",
+    "description": "A messaging app website made for desktop and mobile.",
+    "longDescription": "A messaging app website made for desktop and mobile. It's a simple app that allows you to send and receive messages. It was made as a personal project to learn more about web development. The service runs off a free tier of Render and was built into an Android app later.Made as a test project to learn more about web services and online communication between sites. I made it as an HTML project to run on desktop first, and then added a mobile mode for the website. I also made an app for it in Android Studio that still ran off of the Render Service I had set up.",
+    "tags": [
+      "React",
+      "JavaScript",
+      "HTML/CSS",
+      "Web Dev"
+    ],
+    "date": "2026-03",
+    "featured": false,
+    "links": {
+      "live": "https://messaging-app-2lzh.onrender.com/"
+    },
+    "folder": "projects/Messaging App",
+    "thumbnail": "projects/Messaging App/screenshots/simple_messages_logo.png",
+    "screenshots": [
+      "projects/Messaging App/screenshots/image 2.png",
+      "projects/Messaging App/screenshots/image 3.png",
+      "projects/Messaging App/screenshots/image 4.png"
+    ],
+    "videos": [
+      "projects/Messaging App/videos/Messaging App Video.mp4"
+    ]
+  },
+  {
     "name": "Rocket Gravity",
     "description": "A 2D action shooter game.",
     "longDescription": "A 2D action shooter game where you control a rocket. You shoot enemies, gain powerups, and defeat bosses. It's very and physics based. I made this game over the span of a few month, starting from having almost no experience in game design and Unity. This project taught me a lot, like UI design, graphic skills, polish, particles effects, and more. I submitted the game to Crazy Games, which gave me some great feedback on the game. I am happy I decided to work on this project as it helped me learn a lot and push through times when I didn't feel motivated.",
@@ -48,59 +100,11 @@ const projects = [
     "videos": [
       "projects/Box Business/videos/Box Business Video.mp4"
     ]
-  },
-  {
-    "name": "Messaging App",
-    "description": "A messaging app website made for desktop and mobile.",
-    "longDescription": "A messaging app website made for desktop and mobile. It's a simple app that allows you to send and receive messages. It was made as a personal project to learn more about web development. The service runs off a free tier of Render and was built into an Android app later.Made as a test project to learn more about web services and online communication between sites. I made it as an HTML project to run on desktop first, and then added a mobile mode for the website. I also made an app for it in Android Studio that still ran off of the Render Service I had set up.",
-    "tags": [
-      "React",
-      "JavaScript",
-      "HTML/CSS",
-      "Web Dev"
-    ],
-    "date": "2026-03",
-    "featured": false,
-    "links": {
-      "live": "https://messaging-app-2lzh.onrender.com/"
-    },
-    "folder": "projects/Messaging App",
-    "thumbnail": "projects/Messaging App/screenshots/simple_messages_logo.png",
-    "screenshots": [
-      "projects/Messaging App/screenshots/image 2.png",
-      "projects/Messaging App/screenshots/image 3.png",
-      "projects/Messaging App/screenshots/image 4.png"
-    ],
-    "videos": [
-      "projects/Messaging App/videos/Messaging App Video.mp4"
-    ]
-  },
-  {
-    "name": "Coffee Website",
-    "description": "Website for a small coffee bussiness.",
-    "longDescription": "Lets users order items online and pick either to pick up or have their food be delivered. Shows the history of the company and a little bit about them.",
-    "tags": [
-      "WEB-DESIGN",
-      "HTML",
-      "CSS",
-      "JAVASCRIPT"
-    ],
-    "date": "2026-03",
-    "featured": false,
-    "links": {
-      "live": "https://willcoding11.github.io/coffee-website/"
-    },
-    "folder": "projects/Coffee Website",
-    "thumbnail": "projects/Coffee Website/screenshots/Screenshot.png",
-    "screenshots": [
-      "projects/Coffee Website/screenshots/Screenshot 2.png",
-      "projects/Coffee Website/screenshots/screencapture-willcoding11-github-io-coffee-website-2026-03-17-21_50_27.png"
-    ],
-    "videos": [
-      "projects/Coffee Website/videos/Recording 2026-03-18 165025.mp4"
-    ]
   }
 ];
+
+// Projects to show on the home page (by name, in order)
+const homeProjects = ["Rocket Gravity", "Coffee Website", "Messaging App"];
 
 const bannerConfig = {
   "title": "William Culver",

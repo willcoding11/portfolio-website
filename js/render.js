@@ -13,7 +13,11 @@ function renderHome() {
       </div>
     </div>
     <div class="home-proj-grid">
-      ${projects.map((p, i) => `
+      ${homeProjects.map(name => {
+        const i = projects.findIndex(p => p.name === name);
+        if (i === -1) return '';
+        const p = projects[i];
+        return `
         <div class="home-proj-wrap">
           <div class="project-card" onclick="openModal(${i})">
             <div class="project-card-img"><img src="${p.thumbnail}" alt="${p.name}"></div>
@@ -25,8 +29,8 @@ function renderHome() {
               </div>
             </div>
           </div>
-        </div>
-      `).join('')}
+        </div>`;
+      }).join('')}
     </div>`;
   initBannerCanvas();
 }
