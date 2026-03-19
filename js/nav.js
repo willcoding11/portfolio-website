@@ -17,6 +17,7 @@ function switchPage(id) {
     target.classList.add('active');
     void target.offsetWidth;
     requestAnimationFrame(() => target.classList.add('visible'));
+    window.scrollTo(0, 0);
   }, 360);
 
   navLinks.forEach(l => {
