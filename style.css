@@ -205,9 +205,7 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   grid-template-columns: 1fr 1fr;
   gap: 36px;
   align-items: center;
-  border-radius: var(--radius);
-  padding: 40px;
-  border: 1px solid var(--border);
+  padding: 40px 0;
   position: relative;
 }
 .home-section.img-right .home-section-img {
@@ -718,7 +716,7 @@ main { padding-top: var(--nav-height); min-height: 100vh; }
   .home-proj-grid { grid-template-columns: repeat(2, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   #site-footer { padding: 60px 20px 32px; }
-  .home-section { grid-template-columns: 1fr; padding: 28px; }
+  .home-section { grid-template-columns: 1fr; padding: 20px 0; }
   .home-section.img-right .home-section-img { order: 0; }
   .home-section.img-right .home-section-text { order: 0; }
   .about-bio { grid-template-columns: 80px 1fr; gap: 20px; }

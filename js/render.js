@@ -34,7 +34,7 @@ function renderHome() {
     </div>
     <div class="home-sections">
       ${homeSections.map((s, i) => `
-        <div class="home-section${s.imageLeft ? '' : ' img-right'}" style="background:${s.bgColor || 'transparent'}" data-section-index="${i}">
+        <div class="home-section${s.imageLeft ? '' : ' img-right'}" data-section-index="${i}">
           <div class="home-section-img"><img src="${s.image}" alt="${s.heading}"></div>
           <div class="home-section-text">
             <h2>${s.heading}</h2>
