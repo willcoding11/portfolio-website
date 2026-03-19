@@ -30,6 +30,9 @@
 .dev-btn:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25)}
 .dev-btn-save{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important}
 .dev-btn-save:hover{filter:brightness(1.1)}
+.dev-btn-push{background:#2a6a3a!important;color:#fff!important;border-color:#2a6a3a!important}
+.dev-btn-push:hover{filter:brightness(1.15)}
+.dev-btn-push:disabled{opacity:.5;cursor:not-allowed;filter:none}
 
 /* ── edit overlays ── */
 .dev-edit-icon{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:8px;background:rgba(196,122,58,.9);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;opacity:0;transition:opacity .2s;border:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
@@ -119,11 +122,13 @@
     <div class="dev-toolbar-right">
       <button class="dev-btn" id="dev-btn-add-project">+ New Project</button>
       <button class="dev-btn dev-btn-save" id="dev-btn-save">Save to Disk</button>
+      <button class="dev-btn dev-btn-push" id="dev-btn-push">Push Live</button>
     </div>`;
   document.body.appendChild(toolbar);
 
   qs('#dev-btn-save', toolbar).addEventListener('click', saveAll);
   qs('#dev-btn-add-project', toolbar).addEventListener('click', newProject);
+  qs('#dev-btn-push', toolbar).addEventListener('click', pushLive);
 
   // ═══════════════════════════════════
   // CREATE EDITOR PANEL
@@ -923,6 +928,29 @@
     } catch (e) {
       showToast('Save error: ' + e.message, 'error');
     }
+  }
+
+  // ═══════════════════════════════════
+  // PUSH LIVE — save, commit, and push
+  // ═══════════════════════════════════
+  async function pushLive() {
+    const btn = qs('#dev-btn-push', toolbar);
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+    try {
+      // Save first if there are unsaved changes
+      if (dirty) await saveAll();
+
+      btn.textContent = 'Pushing...';
+      const res = await fetch('/api/push', { method: 'POST' });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Push failed');
+      showToast('Pushed live! ' + (json.message || ''), 'success');
+    } catch (e) {
+      showToast('Push error: ' + e.message, 'error');
+    }
+    btn.disabled = false;
+    btn.textContent = 'Push Live';
   }
 
   // ═══════════════════════════════════
