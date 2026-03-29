@@ -2052,11 +2052,14 @@ io.on('connection', (socket) => {
 
   // ============ DISCONNECT ============
   // ============ DM CALLS ============
-  socket.on('startCall', ({ targetUser, chatId }) => {
+  socket.on('startCall', ({ targetUser, chatId }, callback) => {
     if (!currentUser) return;
     const targetSocket = onlineUsers.get(targetUser.toLowerCase());
     if (targetSocket) {
       io.to(targetSocket).emit('incomingCall', { from: currentUser, chatId });
+      if (callback) callback({ success: true });
+    } else {
+      if (callback) callback({ success: false, error: 'User is offline' });
     }
   });
 

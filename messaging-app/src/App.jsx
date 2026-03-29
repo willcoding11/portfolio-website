@@ -169,6 +169,7 @@ function App() {
   const callAudioRef = useRef(null);
   const activeCallRef = useRef(null);
   const pendingCallSignalsRef = useRef([]);
+  const callTimeoutRef = useRef(null);
   const cropperRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -276,8 +277,12 @@ function App() {
     iceServers: [
       { urls: 'stun:stun.l.google.com:19302' },
       { urls: 'stun:stun1.l.google.com:19302' },
+      { urls: 'stun:stun2.l.google.com:19302' },
+      { urls: 'stun:stun3.l.google.com:19302' },
+      { urls: 'stun:stun4.l.google.com:19302' },
       { urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject' },
       { urls: 'turn:openrelay.metered.ca:443', username: 'openrelayproject', credential: 'openrelayproject' },
+      { urls: 'turn:openrelay.metered.ca:443?transport=tcp', username: 'openrelayproject', credential: 'openrelayproject' },
     ]
   };
 
@@ -579,6 +584,8 @@ function App() {
         peer.on('error', () => {
           peer.destroy();
           delete peersRef.current[lowerFrom];
+          removeAudioElement(audioElementsRef.current[lowerFrom]);
+          delete audioElementsRef.current[lowerFrom];
         });
 
         peersRef.current[lowerFrom] = peer;
@@ -977,7 +984,7 @@ function App() {
 
       // Leave current voice if in one
       if (voiceChannel) {
-        await leaveVoice();
+        leaveVoice();
       }
 
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -986,6 +993,8 @@ function App() {
       socket.emit('joinVoice', { groupId }, (response) => {
         if (response.success) {
           setVoiceChannel(groupId);
+          // Sync ref immediately so createPeer signals use the correct groupId
+          voiceChannelRef.current = groupId;
           setVoiceConnecting(false);
 
           // Create peer connections to existing members
@@ -1074,6 +1083,8 @@ function App() {
     peer.on('error', () => {
       peer.destroy();
       delete peersRef.current[lowerTarget];
+      removeAudioElement(audioElementsRef.current[lowerTarget]);
+      delete audioElementsRef.current[lowerTarget];
     });
 
     peersRef.current[lowerTarget] = peer;
@@ -1104,7 +1115,21 @@ function App() {
       setActiveCall({ chatId, user: contactName, type: 'outgoing' });
       pendingCallSignalsRef.current = [];
 
-      socket.emit('startCall', { targetUser: contactName, chatId });
+      socket.emit('startCall', { targetUser: contactName, chatId }, (response) => {
+        if (response && !response.success) {
+          cleanupCall();
+          showToast(response.error || 'User is offline', 'error');
+          return;
+        }
+        // Auto-cancel call after 30 seconds if not answered
+        callTimeoutRef.current = setTimeout(() => {
+          if (activeCallRef.current?.type === 'outgoing') {
+            socket.emit('endCall', { targetUser: contactName });
+            cleanupCall();
+            showToast('No answer', 'info');
+          }
+        }, 30000);
+      });
 
       // Don't create peer yet - wait until callee answers to avoid signal race
     } catch (err) {
@@ -1136,9 +1161,12 @@ function App() {
       cleanupCall();
     });
 
-    peer.on('error', () => {
-      cleanupCall();
-      showToast('Call connection failed', 'error');
+    peer.on('error', (err) => {
+      console.error('Call peer error:', err);
+      if (callPeerRef.current === peer) {
+        cleanupCall();
+        showToast('Call connection failed', 'error');
+      }
     });
 
     callPeerRef.current = peer;
@@ -1184,9 +1212,14 @@ function App() {
   };
 
   const cleanupCall = () => {
-    if (callPeerRef.current) {
-      callPeerRef.current.destroy();
-      callPeerRef.current = null;
+    if (callTimeoutRef.current) {
+      clearTimeout(callTimeoutRef.current);
+      callTimeoutRef.current = null;
+    }
+    const peer = callPeerRef.current;
+    callPeerRef.current = null;
+    if (peer) {
+      try { peer.destroy(); } catch (e) { /* already destroyed */ }
     }
     if (callStreamRef.current) {
       callStreamRef.current.getTracks().forEach(t => t.stop());
